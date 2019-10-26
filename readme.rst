@@ -1,4 +1,4 @@
 ###################
-Web App E-voting using Codeigniter
+E-voting Web App  using Codeigniter
 ###################
 
