@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/main.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <title>Perpustakaan</title>
+</head>
+
+<body id="detail-calon">
+    <!-- best books to read -->
+    <div class="container">
+        <div class="row col-12 m-auto m-0 p-0">
+            <div class="col-md-6 col-12 m-0 order-md-2 order-1">
+                <img src="https://cdn.britannica.com/54/188754-050-A3613741/Elon-Musk-2010.jpg"
+                    class="col-12 m-0 p-0 img-calon rounded" alt="" srcset="">
+            </div>
+            <div class="col-md-6 col-12 m-0 order-md-1 order-2 m-auto">
+                <h1 class="text-center">Elon Musk</h1>
+                <h2>Visi</h2>
+                <div class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ratione
+                    maiores, doloribus accusantium cupiditate sequi nemo in, sunt officia incidunt corporis iste magnam
+                    neque impedit consequatur quia repudiandae, officiis sapiente!</div>
+                <h2>Misi</h2>
+                <div class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ratione
+                    maiores, doloribus accusantium cupiditate
+                    sequi nemo in, sunt officia incidunt corporis iste magnam neque impedit consequatur quia
+                    repudiandae, officiis
+                    sapiente!</div>
+            </div>
+        </div>
+        <div class="row col-12 m-auto m-0 p-0">
+            <div class="col-md-6 col-12 row ml-md-auto ml-0 m-0">
+                <div class="p-1 col-md-6 col-12
+col-md-6 col-12 order-md-2 order-1">
+                    <button class="btn btn-primary col-12 m-0" onclick="alert()">Pilih</button>
+                </div>
+                <div class="p-1 col-md-6 col-12
+col-md-6 col-12  order-md-1 order-2">
+                    <button class="btn btn-outline-primary col-12 m-0">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+<script>
+    function alert() {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-primary m-2',
+                cancelButton: 'btn btn-outline-primary m-2'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Apakah anda yakin memilih?',
+            text: "klik tombol ya jika telah yakin dengan pilihan anda",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, saya yakin',
+            cancelButtonText: 'saya tidak yakin',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
+
+</html>
