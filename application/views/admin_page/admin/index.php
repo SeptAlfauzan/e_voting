@@ -85,7 +85,49 @@
     <?php $this->load->view('admin_page/template/sidebar/index'); ?>
     <div class="page-wrapper">
         <div class="container-fluid">
-            admin
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Button with data-target
+            </button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mt-5">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Email address</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Example select</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect2">Example multiple select</label>
+                            <select multiple class="form-control" id="exampleFormControlSelect2">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="form-group row col-md-6 col-12 ml-auto">
+                            <button type="submit" class="btn btn-primary col-md-6 col-12 order-md-2 order-1">Tambahkan</button>
+                            <button class="btn btn-secondary col-md-6 col-12 order-md-1 order-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Batal
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
