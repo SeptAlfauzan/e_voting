@@ -23,7 +23,7 @@
                     <img class="card-img-top" src="<?= base_url() ?>images/<?= $dataCalon['foto_calon'] ?>" style="height: 30vh; object-fitt: cover" alt="Card image cap">
                     <div class="card-body text-left">
                         <h5 class="card-title"><?= $dataCalon['nama_calon'] ?></h5>
-                        <a href="<?= base_url('Detail') ?>?id_calon=<?= $dataCalon['id_calon'] ?>" class="btn btn-primary pl-3 pr-3">Lihat Visi Misi</a>
+                        <a href="<?= base_url('Detail') ?>?id_calon=<?= $dataCalon['id_calon'] ?>" class="btn btn-primary pl-3 pr-3 col-12">Lihat Visi Misi</a>
                     </div>
                 </div>
             </div>
