@@ -86,46 +86,47 @@
     <div class="page-wrapper">
         <div class="container-fluid">
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Button with data-target
+                Add new admin
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body mt-5">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <form class="form-inline" method="post" action="<?= base_url('AdminPage/addNewAdmin') ?>">
+                        <div class="form-group mb-2">
+                            <label for="staticEmail2" class="sr-only">Email</label>
+                            <input type="text" class="form-control" id="username" placeholder="username" name="username">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="inputPassword2" class="sr-only">Password</label>
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Password" name="password">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect2">Example multiple select</label>
-                            <select multiple class="form-control" id="exampleFormControlSelect2">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <div class="form-group row col-md-6 col-12 ml-auto">
-                            <button type="submit" class="btn btn-primary col-md-6 col-12 order-md-2 order-1">Tambahkan</button>
-                            <button class="btn btn-secondary col-md-6 col-12 order-md-1 order-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Batal
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Add</button>
                     </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title col-md-8 col-12 m-auto">Admin</h4>
+                </div>
+                <div class="table-responsive pb-5">
+                    <table class="table table-hover col-md-8 col-12  m-auto">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">Username</th>
+                                <th class="border-top-0 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($admin as $data) { ?>
+                                <tr>
+                                    <td class="txt-oflo"><?= $data['username']?></td>
+                                    <td class="text-right">
+                                        <a href="#" class="label label-purple label-rounded text-white">edit</a>
+                                        <a href="<?= base_url('AdminPage/delAdmin')?>?id=<?= $data['id_admin']?>" class="label label-danger label-rounded text-white">delete</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

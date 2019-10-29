@@ -27,7 +27,7 @@
                 <!-- ============================================================== -->
                 <div class="navbar-brand">
                     <span href="index.html" class="logo text-white m-auto">
-                        Admin
+                        Selamat Datang <?= $_SESSION['username_admin']?>
                     </span>
                 </div>
                 <!-- ============================================================== -->
@@ -234,13 +234,6 @@ $jumlah_sudah_memilih = count($sudahMemilih);
 <script src="<?= base_url() ?>assets/admin_page_assets/assets/libs/chartist/dist/chartist.min.js"></script>
 <script src="<?= base_url() ?>assets/admin_page_assets/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
 <script src="<?= base_url() ?>assets/admin_page_assets/dist/js/pages/dashboards/dashboard1.js"></script>
-
-
-<!-- <script>
-    setInterval(function() {
-        $('.grafik').load(<?= base_url('AdminPage') ?>);
-    }, 1000);
-</script> -->
 
 </body>
 

@@ -53,6 +53,12 @@ class MainModel extends CI_Model {
         return $res;
     }
 
+    public function checkUsername($username)
+    {
+        $res = $this->db->where('username', $username)->get('admin')->num_rows();
+        return $res;
+    }
+
     public function checkLogin($user, $pass)
     {
         $res = $this->db->query("SELECT * FROM pemilih WHERE id_pemilih = '$user' AND password_pemilih = '$pass'")->num_rows();

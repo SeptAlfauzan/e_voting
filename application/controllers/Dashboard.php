@@ -19,6 +19,15 @@ class Dashboard extends CI_Controller
             $_SESSION['login'] = 'admin';
             redirect(base_url('AdminPage'));
         }
+
+        $res = $this->MainModel->getSpecifiedWithId('admin', 'username', $user);
+        $passHashed = $res->{'password_admin'};
+        // var_dump($data); die();
+        if (password_verify($pass, $passHashed)) {
+            $_SESSION['login'] = 'admin';
+            $_SESSION['username_admin'] = $user;
+            redirect(base_url('AdminPage'));
+        }
     }
 
     public function login()
@@ -30,6 +39,7 @@ class Dashboard extends CI_Controller
 
         // login admin
         $this->loginAdmin($user, $pass);
+        die();
 
         // login user
         if ($check != 0) {

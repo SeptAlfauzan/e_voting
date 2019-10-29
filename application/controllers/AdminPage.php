@@ -54,7 +54,36 @@ class AdminPage extends CI_Controller
         if ($_SESSION['login'] != 'admin') {
             redirect(base_url());
         }
-        $this->load->view('admin_page/admin/index');
+        $data['admin'] = $this->MainModel->getData('admin');
+        $this->load->view('admin_page/admin/index', $data);
+    }
+
+    public function addNewAdmin()
+    {
+        if ($_SESSION['login'] != 'admin') {
+            redirect(base_url());
+        }
+        $username = htmlspecialchars($_POST['username'], true);
+        $password = htmlspecialchars($_POST['password'], true);
+        // if (strlen($username) >= 100 || strlen($password) < 8 || strlen($password) >= 100) {
+        //     echo "username tidak boleh lebih dari 100 karakter dan password harus lebih dari 7 karakter dan kurang dari 100 karakter";
+        //     redirect('AdminPage/admin');
+        // }
+        $checkUsername = $this->MainModel->checkUsername($username);
+        if ($checkUsername >= 1) {
+            echo "username telah digunakan";
+            die();
+        }
+        $pass = password_hash($password, PASSWORD_DEFAULT);
+        $id = $this->randId();
+        $data = array(
+            'id_admin' => $id,
+            'username' => $username,
+            'password_admin' => $pass
+        );
+        $this->MainModel->insertData('admin', $data);
+        echo "berhasil";
+        redirect('AdminPage/admin');
     }
 
     public function tambahCalonPage()
@@ -184,6 +213,13 @@ class AdminPage extends CI_Controller
         );
         $this->MainModel->updateData($data, 'id_calon', $id, 'calon');
         redirect('AdminPage/calon');
+    }
+    
+    public function delAdmin()
+    {
+        $id = $_GET['id'];
+        $this->MainModel->deleteData('admin', 'id_admin', $id);
+        redirect('AdminPage/admin');
     }
 
     public function logout()
