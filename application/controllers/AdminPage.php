@@ -157,6 +157,7 @@ class AdminPage extends CI_Controller
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 3000;
+        $config['overwrite'] = true;
 
         $this->load->library('upload', $config);
 
@@ -181,6 +182,13 @@ class AdminPage extends CI_Controller
             redirect('AdminPage/calon');
         }
     }
+    public function delImage($id)
+    {
+        $image = $this->MainModel->getSpecifiedWithId('calon', 'id_calon', $id);
+        $imageName = $image->{'foto_calon'};
+        $filename = explode(".", $imageName)[0];
+        return array_map('unlink', glob(FCPATH . "images/$filename.*"));
+    }
 
     public function delDataCalon()
     {
@@ -188,6 +196,7 @@ class AdminPage extends CI_Controller
             redirect(base_url());
         }
         $id = $_GET['id'];
+        $this->delImage($id);
         $this->MainModel->deleteData('calon', 'id_calon', $id);
         redirect('AdminPage/calon');
     }
@@ -205,13 +214,33 @@ class AdminPage extends CI_Controller
     public function setEdit()
     {
         $id = $_GET['id'];
-        $data = array(
-            'nama_calon'=>$_POST['nama_calon'],
-            'visi_calon'=>$_POST['visi_calon'],
-            'misi_calon'=>$_POST['misi_calon'],
-            'foto_calon'=>$_FILES['profile_image']['name']
-        );
-        $this->MainModel->updateData($data, 'id_calon', $id, 'calon');
+
+        $config['upload_path'] = './images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 3000;
+        $config['overwrite'] = true;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('profile_image')) {
+            $error = array('error' => $this->upload->display_errors());
+
+            var_dump($error['error']);
+        } else {
+            $data = array('image_metadata' => $this->upload->data());
+
+            $namaFile = $data["image_metadata"]['file_name'];
+            $data = array(
+                'nama_calon' => $_POST['nama_calon'],
+                'visi_calon' => $_POST['visi_calon'],
+                'misi_calon' => $_POST['misi_calon'],
+                'foto_calon' => $namaFile
+            );
+            $this->MainModel->updateData($data, 'id_calon', $id, 'calon');
+            redirect('AdminPage/calon');
+        }
+
+        
         redirect('AdminPage/calon');
     }
     
@@ -222,6 +251,23 @@ class AdminPage extends CI_Controller
         redirect('AdminPage/admin');
     }
 
+    public function editAdmin()
+    {
+        $id = $_GET['id'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $pass = password_hash($password, PASSWORD_DEFAULT);
+
+        $data = array(
+            'username' => $username,
+            'password_admin' => $pass
+        );
+        
+        $this->MainModel->updateData($data, 'id_admin', $id, 'admin');
+        redirect('AdminPage/admin');
+    }
+
+   
     public function logout()
     {
         session_unset();

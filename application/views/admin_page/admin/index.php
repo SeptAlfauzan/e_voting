@@ -118,12 +118,42 @@
                         <tbody>
                             <?php foreach ($admin as $data) { ?>
                                 <tr>
-                                    <td class="txt-oflo"><?= $data['username']?></td>
+                                    <td class="txt-oflo"><?= $data['username'] ?></td>
                                     <td class="text-right">
-                                        <a href="#" class="label label-purple label-rounded text-white">edit</a>
-                                        <a href="<?= base_url('AdminPage/delAdmin')?>?id=<?= $data['id_admin']?>" class="label label-danger label-rounded text-white">delete</a>
+                                        <a href="#" class="label label-purple label-rounded text-white" data-toggle="modal" data-target="#modalEdit<?= $data['id_admin'] ?>">edit</a>
+                                        <a href="<?= base_url('AdminPage/delAdmin') ?>?id=<?= $data['id_admin'] ?>" class="label label-danger label-rounded text-white">delete</a>
                                     </td>
                                 </tr>
+
+                                <!-- Modal edit -->
+                                <div class="modal fade" id="modalEdit<?= $data['id_admin'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form method="post" action="<?= base_url('AdminPage/editAdmin')?>?id=<?= $data['id_admin']?>">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Username</label>
+                                                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?= $data['username']?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Password</label>
+                                                    <input type="password" name="password" required class="form-control" id="exampleInputPassword1" placeholder="type your new password">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php } ?>
                         </tbody>
                     </table>
