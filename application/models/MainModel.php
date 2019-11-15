@@ -46,6 +46,10 @@ class MainModel extends CI_Model {
         $this->db->where($id_field, $id);
         $this->db->delete($table);
     }
+    public function deleteAllData($table)
+    {
+        $this->db->empty_table($table);
+    }
 
     public function getSpecifiedWithId($table, $id_field, $id)
     {

@@ -18,12 +18,12 @@
 
         <div class="col-md-6 col-12 m-0 p-0 position-relative">
             <div id="carouselExampleFade" class="carousel slide carousel-fade position-relative" style="top: 30%" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="txt-landing carousel-item active">
-                        <h1 class="col-md-8 col-12 text-white">Selamat datang di website E-Voting Ketua OSIS SMKN 1 Boyolangu</h1>
+                <div class="carousel-inner col-12 m-0 p-0">
+                    <div class="txt-landing carousel-item active col-12 m-0 p-0">
+                        <h1 class="col-md-8 m-0 p-0 col-12 text-white">Selamat datang di website E-Voting Ketua OSIS SMKN 1 Boyolangu</h1>
                     </div>
-                    <div class="txt-landing carousel-item">
-                        <h1 class="col-md-8 col-12 text-white">Login terlebih dahulu dengan username dan password yang telah diberikan panitia</h1>
+                    <div class="txt-landing carousel-item col-12 m-0 p-0">
+                        <h1 class="col-md-8 m-0 p-0 col-12 text-white">Login terlebih dahulu dengan username dan password yang telah diberikan panitia</h1>
                     </div>
                 </div>
             </div>
@@ -40,11 +40,11 @@
                 <?php } ?>
                 <div class="form-group m-auto col-md-10 col-12">
                     <label class="text-white" for="exampleFormControlInput1">Username</label>
-                    <input type="text" class=" form-control border border-white  input-login text-light" style="" name="username" id="exampleFormControlInput1" placeholder="">
+                    <input type="text" autocomplete="false" class=" form-control border border-white  input-login text-light" style="" name="username" id="exampleFormControlInput1" placeholder="">
                 </div>
                 <div class="form-group m-auto col-md-10 col-12">
                     <label class="text-white" for="exampleFormControlInput1">Password</label>
-                    <input type="password" class=" form-control border border-white input-login  text-light" style="" name="password" id="exampleFormControlInput1" placeholder="">
+                    <input type="password" autocomplete="false" class=" form-control border border-white input-login  text-light" style="" name="password" id="exampleFormControlInput1" placeholder="">
                 </div>
                 <div class="m-auto col-md-10 col-12 pt-3">
                     <button type="submit" class="shadow btn btn-info pl-3 pr-3 col-12">Login</button>

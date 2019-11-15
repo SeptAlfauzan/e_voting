@@ -33,51 +33,6 @@
             <!-- ============================================================== -->
             <!-- End Logo -->
             <!-- ============================================================== -->
-            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
-                <!-- ============================================================== -->
-                <!-- toggle and nav items -->
-                <!-- ============================================================== -->
-                <ul class="navbar-nav float-left mr-auto">
-                    <!-- ============================================================== -->
-                    <!-- Search -->
-                    <!-- ============================================================== -->
-                    <li class="nav-item search-box">
-                        <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                            <div class="d-flex align-items-center">
-                                <i class="mdi mdi-magnify font-20 mr-1"></i>
-                                <div class="ml-1 d-none d-sm-block">
-                                    <span>Search</span>
-                                </div>
-                            </div>
-                        </a>
-                        <form class="app-search position-absolute">
-                            <input type="text" class="form-control" placeholder="Search &amp; enter">
-                            <a class="srh-btn">
-                                <i class="ti-close"></i>
-                            </a>
-                        </form>
-                    </li>
-                </ul>
-                <!-- ============================================================== -->
-                <!-- Right side toggle and nav items -->
-                <!-- ============================================================== -->
-                <ul class="navbar-nav float-right">
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url() ?>assets/admin_page_assets/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                        </div>
-                    </li>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                </ul>
-            </div>
         </nav>
     </header>
 
@@ -85,21 +40,32 @@
     <?php $this->load->view('admin_page/template/sidebar/index'); ?>
     <div class="page-wrapper">
         <div class="container-fluid">
+            <?php if ($this->session->flashdata('editfail') == true) { ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Edit gagal, </strong><?= $this->session->flashdata('editfail') ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php } ?>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Add new admin
+                Tambah admin baru
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body mt-5">
                     <form class="form-inline" method="post" action="<?= base_url('AdminPage/addNewAdmin') ?>">
                         <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Email</label>
+                            <label for="staticEmail2" class="sr-only">Username</label>
                             <input type="text" class="form-control" id="username" placeholder="username" name="username">
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="inputPassword2" class="sr-only">Password</label>
                             <input type="text" class="form-control" id="inputPassword2" placeholder="Password" name="password">
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Add</button>
+                        <button class="btn btn-secondary mb-2 mr-3" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary mb-2">Tambahkan</button>
                     </form>
                 </div>
             </div>
@@ -135,21 +101,24 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form method="post" action="<?= base_url('AdminPage/editAdmin')?>?id=<?= $data['id_admin']?>">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Username</label>
-                                                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?= $data['username']?>">
+                                            <form method="post" action="<?= base_url('AdminPage/editAdmin') ?>?id=<?= $data['id_admin'] ?>">
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Username</label>
+                                                        <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?= $data['username'] ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Password</label>
+                                                        <input type="password" name="password" required class="form-control" id="exampleInputPassword1" placeholder="type your new password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="retype_password" name="password" required class="form-control" id="exampleInputPassword1" placeholder="retype your new password">
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="exampleInputPassword1">Password</label>
-                                                    <input type="password" name="password" required class="form-control" id="exampleInputPassword1" placeholder="type your new password">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                            </div>
                                             </form>
                                         </div>
                                     </div>
@@ -162,17 +131,6 @@
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer text-center">
-            All Rights Reserved by Nice admin. Designed and Developed by
-            <a href="https://wrappixel.com">WrapPixel</a>.
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->

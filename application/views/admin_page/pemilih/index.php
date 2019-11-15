@@ -43,51 +43,6 @@
             <!-- ============================================================== -->
             <!-- End Logo -->
             <!-- ============================================================== -->
-            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
-                <!-- ============================================================== -->
-                <!-- toggle and nav items -->
-                <!-- ============================================================== -->
-                <ul class="navbar-nav float-left mr-auto">
-                    <!-- ============================================================== -->
-                    <!-- Search -->
-                    <!-- ============================================================== -->
-                    <li class="nav-item search-box">
-                        <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                            <div class="d-flex align-items-center">
-                                <i class="mdi mdi-magnify font-20 mr-1"></i>
-                                <div class="ml-1 d-none d-sm-block">
-                                    <span>Search</span>
-                                </div>
-                            </div>
-                        </a>
-                        <form class="app-search position-absolute">
-                            <input type="text" class="form-control" placeholder="Search &amp; enter">
-                            <a class="srh-btn">
-                                <i class="ti-close"></i>
-                            </a>
-                        </form>
-                    </li>
-                </ul>
-                <!-- ============================================================== -->
-                <!-- Right side toggle and nav items -->
-                <!-- ============================================================== -->
-                <ul class="navbar-nav float-right">
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url() ?>assets/admin_page_assets/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                        </div>
-                    </li>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                </ul>
-            </div>
         </nav>
     </header>
 
@@ -95,15 +50,46 @@
     <?php $this->load->view('admin_page/template/sidebar/index'); ?>
     <div class="page-wrapper">
         <div class="container-fluid">
-            <div class="col-12 row mb-3 m-0 p-0">
-                <a target="_blank" href="<?= base_url('AdminPage/exportExcel') ?>" class="btn btn-info">export excel</a>
-                <form method="post" action="<?= base_url('AdminPage/insertVoters') ?>" class="form-inline col-12 p-0 m-0">
-                    <div class="form-group ml-auto ">
-                        <!-- <label for="exampleFormControlInput1" class="mr-3"></label> -->
-                        <input type="number" min="1" required class="form-control" name="jumlah_pemilih" id="exampleFormControlInput1" placeholder="Tambah pemilih baru">
+            <a target="_blank" href="<?= base_url('AdminPage/exportExcel') ?>" class="btn btn-info">export data ke excel</a>
+            <div class="col-12 row mt-3 mb-3 m-0 p-0">
+                <small class="text-danger">*masukkan jumlah pemilih baru</small>
+                <div class="row col-12 m-0 p-0 border">
+
+                    <form method="post" action="<?= base_url('AdminPage/insertVoters') ?>" class="form-inline p-0 m-0 order-2 float-right col-8">
+                        <div class="form-group">
+                            <!-- <label for="exampleFormControlInput1" class="mr-3"></label> -->
+                            <input type="number" min="1" required class="form-control col-12" name="jumlah_pemilih" id="exampleFormControlInput1" placeholder="Tambah jumlah pemilih baru">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </form>
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger position-absolute" style="right: 0 !important" data-toggle="modal" data-target="#deleteAll">
+                        Hapus semua pemilih
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteAll" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body p-5">
+                                    <h3 class="text-danger text-center mb-4">Hapus semua data pemilih!</h3>
+                                    <h5 class="text-secondary">Apakah anda yakin ingin menghapus semua data pemilih?</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak, batalkan hapus</button>
+                                    <a href="<?= base_url('AdminPage/delAllPemilih') ?>" class="btn btn-danger">Ya, hapus semua data</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </form>
+                </div>
             </div>
 
             <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -112,6 +98,7 @@
                         <th>Username</th>
                         <th>Password</th>
                         <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,6 +111,32 @@
                             <?php } else { ?>
                                 <td class="text-center"><span class="text-success">sudah memilih</span></td>
                             <?php } ?>
+                            <td>
+                                <button type="button" class="btn btn-danger col-12" style="right: 0 !important" data-toggle="modal" data-target="#deleteAll<?= $dataPemilih['id_pemilih'] ?>">
+                                    Hapus
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteAll<?= $dataPemilih['id_pemilih'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body p-5">
+                                                <h3 class="text-danger text-center mb-4">Hapus data pemilih!</h3>
+                                                <h5 class="text-secondary">Apakah anda yakin ingin menghapus data pemilih ini?</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak, batalkan hapus</button>
+                                                <a href="<?= base_url('AdminPage/delPemilih?id=' . $dataPemilih['id_pemilih']) ?>" class="btn btn-danger">Ya, hapus data</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -135,10 +148,6 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <footer class="footer text-center">
-            All Rights Reserved by Nice admin. Designed and Developed by
-            <a href="https://wrappixel.com">WrapPixel</a>.
-        </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->

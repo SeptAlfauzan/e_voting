@@ -16,18 +16,18 @@
 <body class="bg-svg-landing">
     <!-- best books to read -->
     <div style="height:50vh; background: #002142 !important"></div>
-    <div class="container bg-white rounded " style="margin-top: -300px">
+    <div class="container bg-white rounded border border-primary" style="margin-top: -300px">
         <div class="row col-12 m-auto m-0 p-0">
             <div class="col-md-6 col-12 m-0 order-md-2 order-1">
                 <img src="<?= base_url() ?>images/<?= $calon_detail->{'foto_calon'} ?>" class="col-12 m-0 p-0 img-calon rounded" alt="" srcset="">
             </div>
-            <div class="col-md-6 col-12 m-0 order-md-1 order-2 m-auto">
-                <h1 class="text-center"> <?= $calon_detail->{'nama_calon'} ?> </h1>
+            <div class="col-md-6 col-12 m-0 order-md-1 order-2 m-auto p-5">
+                <h1 class="text-center mb-5"> <?= $calon_detail->{'nama_calon'} ?> </h1>
                 <h2>Visi</h2>
                 <div class="text-secondary">
                     <?= $calon_detail->{'visi_calon'} ?>
                 </div>
-                <h2>Misi</h2>
+                <h2 class="mt-3">Misi</h2>
                 <div class="text-secondary">
                     <?= $calon_detail->{'misi_calon'} ?>
                 </div>
@@ -92,8 +92,8 @@ col-md-6 col-12  order-md-1 order-2">
                 result.dismiss === Swal.DismissReason.cancel
             ) {
                 swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Dibatalkan',
+                    'Anda membatalkan untuk memilih <?= $calon_detail->{'nama_calon'}?>',
                     'error'
                 )
             }

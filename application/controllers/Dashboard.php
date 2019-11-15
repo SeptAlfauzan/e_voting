@@ -39,7 +39,6 @@ class Dashboard extends CI_Controller
 
         // login admin
         $this->loginAdmin($user, $pass);
-        die();
 
         // login user
         if ($check != 0) {
